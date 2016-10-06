@@ -1,12 +1,25 @@
 # laravel-sqs-jobless
 
-Allows receiving custom messages from Amazon SQS.
+Allows receiving custom messages from Amazon SQS. 
+
+Note that message does not need to be in JSON either. Handler (by default JoblessHandler) will be called with raw message string. You can then do whatever you want with the string.
+
+### Why?
+
+Because Laravel by default only allows receiving *job messages* from SQS. Those job messages have very strict form. Any incoming SQS message not following the form will be released back to the queue.
+
+This component allows arbitrary SQS messages to be received and handled by the Laravel.
+
+** Works on Laravel 5.3. **
+
+Does not work on Laravel 5.2 or earlier.
 
 ### Install
 
 ```
 composer require nollaversio/laravel-sqs-jobless
 ```
+**Note!** If you get installation error because of minimum-stability issue, you need to add key-pair *"minimum-stability": "dev"* to your composer.json file.
 
 and
 
@@ -28,7 +41,7 @@ Usage needs four steps:
 
 ```php
 'providers' => [
-    '...',
+    // ...
     'Nollaversio\SQSJobless\JoblessSQSServiceProvider',
 ];
 
@@ -42,7 +55,7 @@ Usage needs four steps:
 'sqs-jobless' => [
     'driver' => 'sqs-jobless',
     'key' => '1122334455667788XX',
-    'secret' => 'q150V7q+63+nyGmrPWb4Sz0AzssVPmGMtsB0xaPJ',
+    'secret' => 'xxxxxxxxxxxxxxxxxxxxxxxxxx',
     'prefix' => 'https://sqs.eu-central-1.amazonaws.com/11223344556677',
     'queue' => 'msgs',
     'region' => 'eu-central-1',
@@ -88,7 +101,8 @@ class JoblessHandler implements ShouldQueue
      */
     public function handle()
     {
-       dd($this->passedInData);
+       \Log::info($this->passedInData);
+       // Check laravel.log, it should now contain msg string.
     }
 }
 
@@ -104,8 +118,9 @@ QUEUE_DRIVER=sqs-jobless
 
 ```
 
-### Custom job handler
+### Custom msg handler
 
 You can easily define your own handler class for messages. You can do this on *config.sqs-jobless.php*. 
 
 Note that only one handler can be defined at a time.
+
