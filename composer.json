@@ -10,6 +10,7 @@
             "email": "jussi@nollaversio.fi"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.5.0",
         "illuminate/support": "^5.3",
