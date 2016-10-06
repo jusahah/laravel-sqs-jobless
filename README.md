@@ -6,14 +6,12 @@ Allows receiving custom messages from Amazon SQS.
 
 ```
 composer require nollaversio/laravel-sqs-jobless
-
 ```
 
 and
 
 ```
 php artisan vendor:publish
-
 ```
 
 ### Usage
@@ -28,7 +26,7 @@ Usage needs four steps:
 
 ### 1.
 
-```
+```php
 'providers' => [
     '...',
     'Nollaversio\SQSJobless\JoblessSQSServiceProvider',
@@ -38,22 +36,23 @@ Usage needs four steps:
 
 ### 2.
 
-```
+```php
 // app.config.queue.php
 
-        'sqs-jobless' => [
-            'driver' => 'sqs-jobless',
-            'key' => '1122334455667788XX',
-            'secret' => 'q150V7q+63+nyGmrPWb4Sz0AzssVPmGMtsB0xaPJ',
-            'prefix' => 'https://sqs.eu-central-1.amazonaws.com/11223344556677',
-            'queue' => 'msgs',
-            'region' => 'eu-central-1',
-        ], 
+'sqs-jobless' => [
+    'driver' => 'sqs-jobless',
+    'key' => '1122334455667788XX',
+    'secret' => 'q150V7q+63+nyGmrPWb4Sz0AzssVPmGMtsB0xaPJ',
+    'prefix' => 'https://sqs.eu-central-1.amazonaws.com/11223344556677',
+    'queue' => 'msgs',
+    'region' => 'eu-central-1',
+], 
 ```
 
 ### 3.
 
-```
+```php
+
 // App\Jobs\JoblessHandler.php
 
 <?php
@@ -97,7 +96,8 @@ class AddLead2 implements ShouldQueue
 
 ### 4.
 
-```
+```php
+
 // .env
 
 QUEUE_DRIVER=sqs-jobless
