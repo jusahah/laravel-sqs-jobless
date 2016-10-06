@@ -1,0 +1,21 @@
+{
+    "name": "nollaversio/laravel-sqs-jobless",
+    "description": "Receiving custom messages from Amazon SQS",
+    "type": "library",
+    "license": "MIT",
+    "keywords": ["laravel", "sqs", "jobless"],
+    "authors": [
+        {
+            "name": "Jussi Hamalainen",
+            "email": "jussi@nollaversio.fi"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nollaversio\\SQSJobless\\": "src/"
+        }
+    }
+}
