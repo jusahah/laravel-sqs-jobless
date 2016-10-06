@@ -64,7 +64,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AddLead2 implements ShouldQueue
+class JoblessHandler implements ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 
