@@ -18,7 +18,7 @@ php artisan vendor:publish
 
 ### Usage
 
-Usage needs two steps:
+Usage needs four steps:
 
 1. Register service provider
 2. Create new record to *config/queue.php*
