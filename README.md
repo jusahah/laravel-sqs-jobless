@@ -48,6 +48,7 @@ Usage needs four steps:
 2. Create new record to *config/queue.php*
 3. Create *App/Jobs/JoblessHandler* class
 4. Change queue driver to *sqs-jobless*
+5. Start the queue.
 
 
 ### 1.
@@ -129,6 +130,14 @@ class JoblessHandler implements ShouldQueue
 
 QUEUE_DRIVER=sqs-jobless
 
+```
+
+### 5.
+
+On command line:
+
+```
+php artisan queue:work
 ```
 
 ### Custom msg handler
