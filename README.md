@@ -16,12 +16,25 @@ Does not work on Laravel 5.2 or earlier.
 
 ### Install
 
+#### Step 1:
+
 ```
 composer require nollaversio/laravel-sqs-jobless
 ```
 **Note!** If you get installation error because of minimum-stability issue, you need to add key-pair *"minimum-stability": "dev"* to your composer.json file.
 
-and
+#### Step 2:
+
+Add Service Provider
+
+```php
+'providers' => [
+    // ...
+    'Nollaversio\SQSJobless\JoblessSQSServiceProvider',
+];
+```
+
+#### Step 3:
 
 ```
 php artisan vendor:publish
@@ -31,7 +44,7 @@ php artisan vendor:publish
 
 Usage needs four steps:
 
-1. Register service provider
+1. Make sure service provider is added.
 2. Create new record to *config/queue.php*
 3. Create *App/Jobs/JoblessHandler* class
 4. Change queue driver to *sqs-jobless*
