@@ -22,11 +22,17 @@ class JoblessQueue extends SqsQueue {
         $response = $this->sqs->receiveMessage([
             'QueueUrl' => $queue,
             'AttributeNames' => ['ApproximateReceiveCount'],
+            'MaxNumberOfMessages' => 10
         ]);
 
         if (count($response['Messages']) > 0) {
-         
-            return new JoblessJob($this->container, $this->sqs, $queue, $response['Messages'][0]);
+
+            foreach ($response['Messages'] as $key => $message) {
+
+                return new JoblessJob($this->container, $this->sqs, $message, 'sqs-jobless', $queue);
+
+            }
+
         }
     }	
 
