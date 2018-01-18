@@ -14,6 +14,8 @@ This component allows arbitrary SQS messages to be received and handled by the L
 
 Does not work on Laravel 5.2 or earlier.
 
+Update 18.1.18: Kindly developed further by geraldosm, should work on Laravel 5.5.
+
 ### Install
 
 #### Step 1:
