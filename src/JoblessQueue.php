@@ -25,6 +25,10 @@ class JoblessQueue extends SqsQueue {
             'MaxNumberOfMessages' => 10
         ]);
 
+        if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
+            $response['Messages'] = (array)$response['Messages'];
+        }
+
         if (count($response['Messages']) > 0) {
 
             foreach ($response['Messages'] as $key => $message) {
